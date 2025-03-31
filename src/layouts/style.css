@@ -1,0 +1,215 @@
+* {
+    margin: 0 !important;
+}
+
+:root {
+    --padding-global: 150px;
+}
+
+body {
+    background-color: black;
+    font-family: "Poppins";
+    color: white;
+}
+
+header {
+    padding: 25px var(--padding-global);
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+}
+
+.content-NavHeader {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.NavHeader {
+    display: flex;
+    gap: 50px;
+    font-family: "bad Script";
+    list-style: none;
+    font-size: 32px;
+}
+
+.content-Logo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+footer * {
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.copy {
+    gap: 1em;
+    padding: 80px 0;
+    border-top: 1px solid #A9A9A9;
+}
+
+.topFooter {
+    padding: 56px 0;
+}
+
+.topFooter div {
+    flex-direction: column;
+    gap: 24px;
+    align-self: center;
+    text-align: center;
+}
+
+.copy p{
+    font-size: 16px;
+    color: #F8F9FA;
+    opacity: 0.5;
+}
+
+footer {
+    padding: 0 150px;
+    background-color: #070707;
+}
+
+footer h4 {
+    font-family: Bad Script;
+}
+
+footer p {
+    opacity: 0.5;
+}
+
+.NavFooter {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    padding: 0;
+    opacity: 0.5;
+}
+
+
+
+@media (min-width: 1401px) {
+
+    
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+
+    :root {
+        --padding-global: 100px;
+    }
+    header {
+        padding: 25px var(--padding-global);
+    }
+    footer {
+        padding: 0 var(--padding-global);
+    }
+    .NavHeader {
+        gap: 24px;
+        font-size: 28px;
+    }
+    .NavFooter {
+        gap: 16px;
+        flex-direction: column;
+    }
+    .content-Logo  img {
+        width: 75%;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    :root {
+        --padding-global: 50px;
+    }
+    header {
+        padding: 25px var(--padding-global);
+    }
+    footer {
+        padding: 0 var(--padding-global);
+    }
+    .NavHeader {
+        gap: 24px;
+        font-size: 24px;
+    }
+    .NavFooter {
+        gap: 16px;
+        flex-direction: column;
+    }
+    .content-Logo  img {
+        width: 75%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    :root {
+        --padding-global: 48px;
+    }
+    header {
+        padding: 24px var(--padding-global);
+    }
+    footer {
+        padding: 0 var(--padding-global);
+    }
+    .NavHeader {
+        gap: 24px;
+        font-size: 24px;
+    }
+    .NavFooter {
+        gap: 16px;
+        flex-direction: column;
+    }
+    .content-Logo  img {
+        width: 85%;
+    }
+}
+
+@media  (min-width: 100px) and (max-width: 767.9px) {
+    :root {
+        --padding-global: 40px;
+    }
+    header {
+        padding: 24px var(--padding-global);
+    }
+    footer {
+        padding: 0 var(--padding-global);
+    }
+    .NavHeader {
+        gap: 16px;
+        font-size: 12px;
+    }
+    .topFooter {
+        gap: 3em;
+        padding: 32px 0;
+        font-size: 12px;
+    }
+    .topFooter div {
+        gap: 16px;
+    }
+    .NavFooter {
+        gap: 8px;
+        flex-direction: column;
+        
+    }
+    .content-Logo  img {
+        width: 100%;
+    }
+    div.content-sobre {
+        padding: 0 64px;
+    }
+    .copy {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 0;
+    }
+    .copy p {
+        font-size: 12px;
+        line-height: 19px;
+    }
+    footer h4 {
+        font-size: 24px;
+    }
+}
+
