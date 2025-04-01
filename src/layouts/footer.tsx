@@ -8,9 +8,9 @@ export default function Footer() {
                 <div className="col-12 col-md-4 col-lg-4 d-flex">
                     <h4>Menu</h4>
                     <ul className='NavFooter'>
-                        <li><a>Home</a></li>
-                        <li><a>Pesquisar</a></li>
-                        <li><a>Seja Colaborador</a></li>
+                        <li><a href='https://seudrink.framer.website'>Home</a></li> 
+                        <li><a href='http://localhost:3000/pesquisa'>Pesquisar</a></li>
+                        <li><a href='https://seudrink.framer.website/#form'>Seja Colaborador</a></li>
                     </ul>
                 </div>
                 <div className="col-12 col-md-4 col-lg-4 d-flex content-sobre">
@@ -18,7 +18,7 @@ export default function Footer() {
                     <p>Web Service criado para ajudar amantes de drinks</p>
                 </div>
                 <div className="col-9 col-md-4 col-lg-4 d-flex content-Logo">
-                    <img src={logo} />
+                <a href='https://seudrink.framer.website'><img alt='logo do site com a escrita SeuDrink e uma imagem ilustrativa de um drink' src={logo} /></a>
                 </div>
             </section>
             <section className="col-12 d-flex copy">

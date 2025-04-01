@@ -5,7 +5,7 @@ export default function Header() {
         <header className="d-flex">
             
             <div className="col-4 content-Logo">
-                <img src={logo} />
+                <a href='https://seudrink.framer.website'><img alt='logo do site com a escrita SeuDrink e uma imagem ilustrativa de um drink' src={logo} /></a>
             </div>
 
             <div className="col-8 content-NavHeader">

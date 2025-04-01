@@ -3,20 +3,23 @@
 }
 
 :root {
-    --padding-global: 150px;
+    --padding-global: 100px;
 }
 
 body {
-    background-color: black;
+    background-color: #080808;
     font-family: "Poppins";
     color: white;
 }
 
 header {
     padding: 25px var(--padding-global);
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.75);
     width: 100%;
+    z-index: 5;
 }
 
 .content-NavHeader {
@@ -213,3 +216,7 @@ footer p {
     }
 }
 
+a {
+    text-decoration: none;
+    color: unset;
+}
