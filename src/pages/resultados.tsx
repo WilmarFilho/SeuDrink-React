@@ -13,6 +13,8 @@ import 'swiper/css/scrollbar';
 
 export default function Resultados() {
 
+    const BASE_URL = "https://apidrink.celleta.com";
+
     interface Drink {
         id: number;
         created_at: string;
@@ -34,16 +36,6 @@ export default function Resultados() {
             updated_at: string;
             nome: string;
         };
-        ingredientes: Array<{
-            id: number;
-            created_at: string;
-            updated_at: string;
-            nome: string;
-            pivot: {
-                drink_id: number;
-                ingrediente_id: number;
-            };
-        }>;
     }
 
     const location = useLocation();
@@ -62,6 +54,7 @@ export default function Resultados() {
 
 
     const optionsPesquisa = location.state?.optionsSelecteds || [];
+    console.log(optionsPesquisa)
     const [drinksSelecionados, setDrinksSelecionados] = useState<Drink[]>([]);
     const swiperRef = useRef<any>(null);
 
@@ -80,14 +73,15 @@ export default function Resultados() {
     }
 
     useEffect(() => {
-        if (optionsPesquisa.length < 2) return; // Evita erro se opções de pesquisa não estiverem definidas
+        if (optionsPesquisa.length < 1) return; // Evita erro se não houver opções
 
-        api.get('api/drink', {
-            params: {
-                fruta_id: optionsPesquisa[0]?.id,
-                bebida_id: optionsPesquisa[1]?.id
-            },
-        })
+        const params: any = { fruta_id: optionsPesquisa[0]?.id };
+
+        if (optionsPesquisa.length > 1) {
+            params.bebida_id = optionsPesquisa[1]?.id; // Só adiciona se houver uma segunda opção
+        }
+
+        api.get('api/drink', { params })
             .then((response) => setDrinksSelecionados(response.data))
             .catch(() => console.log('Erro ao buscar drinks filtrados'));
     }, [optionsPesquisa]);
@@ -121,26 +115,25 @@ export default function Resultados() {
                             height: "auto",
                         }}>
                             <div className="cardDrink">
-                                <div style={{ backgroundImage: `url(${drink.foto})` }} className="cardTop">
+                                <div style={{ backgroundImage: `url(${BASE_URL}/${drink.foto})` }} className="cardTop">
                                     <div className="divNomeDrink">
                                         <h2>{drink.nome}</h2>
                                     </div>
                                 </div>
                                 <div className="cardContent">
                                     <div>
-                                        <h3>Ingredientes:</h3>
+                                        <h3>Fruta e Bebida Principal:</h3>
                                         <ul>
                                             <li>{drink.frutas?.nome}</li>
                                             <li>{drink.bebidas?.nome}</li>
-                                            {drink.ingredientes?.map((ingrediente, index) => (
-                                                <li key={`${ingrediente.id}-${index}`}>{ingrediente.nome}</li>
-                                            ))}
                                         </ul>
                                     </div>
                                     <div>
                                         <h3>Modo de Preparo:</h3>
                                         <ul>
-                                            <li>{drink.preparo}</li>
+                                            {drink.preparo.split(';').map((etapa, index) => (
+                                                etapa.trim() && <li key={index}>{etapa.trim()}</li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>
@@ -153,8 +146,9 @@ export default function Resultados() {
                     <p>Nenhum drink encontrado para os filtros selecionados.</p>
                     <button onClick={retornaHome}>Voltar</button>
                 </div>
-            )}
-        </section>
+            )
+            }
+        </section >
     );
 
 }

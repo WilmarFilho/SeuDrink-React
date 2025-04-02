@@ -250,7 +250,7 @@
 
 .cardDrink h3,
 .cardDrink h2 {
-  font-size: 48px;
+  font-size: 40px;
   font-family: Comfortaa;
 }
 
@@ -344,7 +344,11 @@
 
   .heroDrinks h2,
   .heroDrinks .cardContent h3 {
-    font-size: 40px;
+    font-size: 30px;
+  }
+
+  .heroDrinks .cardContent li {
+    font-size: 20px;
   }
 
   .cardTop {
@@ -393,12 +397,13 @@
 
   .heroDrinks h2,
   .heroDrinks .cardContent h3 {
-    font-size: 32px;
+    font-size: 26px;
   }
 
   .heroDrinks .cardContent li {
-    font-size: 20px;
+    font-size: 18px;
   }
+
 
   .cardTop {
     height: 300px;

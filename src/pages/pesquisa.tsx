@@ -54,7 +54,7 @@ export default function Pesquisa() {
         setOptions([]);
         setParametro('');
 
-        if (optionsSelecteds.length == 3) {
+        if (optionsSelecteds.length == 2) {
             navigate("/resultado", { state: { optionsSelecteds } });
         }
 
@@ -87,17 +87,7 @@ export default function Pesquisa() {
             setPlaceholderPesquisa('Digite o nome da sua bebida');
         }
 
-        if (optionsSelecteds.length == 2) {
-            api.get('api/ingredientes', {
-                params: {
-                    nome: parametro ? parametro : '***'
-                },
-            })
-                .then((response) => setOptions(response.data))
-                .catch(() => console.log('Erro ao buscar ingredientes'));
 
-            setPlaceholderPesquisa('Digite o nome de algum ingrediente');
-        }
     }, [parametro]);
 
     useEffect(() => {
@@ -121,6 +111,7 @@ export default function Pesquisa() {
                 <div className='content-options-selected'>
                     <h4>Anteriormente Selecionado :</h4>
                     <div className='optionsSelecteds'>
+
                         {optionsSelecteds.map((optionSelec, index) => (
                             <div className='optionSelected' key={index}>{optionSelec.nome}</div>
                         ))}
@@ -128,6 +119,7 @@ export default function Pesquisa() {
                 </div>
                 <input type='text' className='campoBusca' placeholder={placeholderPesquisa} value={parametro} onChange={(event) => setParametro(event.target.value)} ></input>
                 <div className='optionsHero'>
+
                     {options.slice(0, 4).map(option => (
                         <div onClick={(event) => {
                             const nome = event.currentTarget.textContent;
@@ -135,7 +127,15 @@ export default function Pesquisa() {
                             setOptionsSelecteds(prevOptions => [...prevOptions, { id, nome: nome ?? '' }]);
                         }} id={option.id} className='option col-5 col-md-3 col-lg-3' key={option.id}>{option.nome}</div>
                     ))}
+
+
+
                 </div>
+                {optionsSelecteds.length === 1 && <div onClick={(event) => {
+                    const nome = event.currentTarget.textContent;
+                    const id = event.currentTarget.id;
+                    setOptionsSelecteds(prevOptions => [...prevOptions, { id, nome: nome ?? '' }]);
+                }} className='option col-12'  >PULAR</div>}
             </div>
             <div className='col-12 col-md-9 col-lg-6'>
 
