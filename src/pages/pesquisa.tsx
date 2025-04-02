@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import './style.css';
 import './assets/bg.webp';
 import drinkimg from './assets/drink.webp'
@@ -25,6 +26,17 @@ export default function Pesquisa() {
     }
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const header = document.querySelector('header');
+        if (header) {
+            if (location.pathname === '/pesquisa') {
+                header.style.backgroundColor = '#000000bf';
+            }
+        }
+
+    }, [location]);
 
     const [optionsSelecteds, setOptionsSelecteds] = useState<OptionsSelecteds[]>([]);
     const [options, setOptions] = useState<DrinkIngredientes[]>([]);
@@ -32,7 +44,7 @@ export default function Pesquisa() {
     const [parametro, setParametro] = useState<string>('');
     const [parametroNomes, setParametroNomes] = useState<string>('');
     const [placeholderPesquisa, setPlaceholderPesquisa] = useState<string>('Digite o nome da sua Fruta');
-    
+
 
     function buscaPorNome(option: string | null) {
         navigate("/resultado", { state: option });
@@ -98,6 +110,10 @@ export default function Pesquisa() {
             .catch(() => console.log('Erro ao buscar drinks'));
     }, [parametroNomes]);
 
+
+
+
+
     return (<>
         <section className='row' id='hero'>
             <div className='col-12 col-md-9 col-lg-6 content-Hero'>
@@ -106,7 +122,7 @@ export default function Pesquisa() {
                     <h4>Anteriormente Selecionado :</h4>
                     <div className='optionsSelecteds'>
                         {optionsSelecteds.map((optionSelec, index) => (
-                            <div className='optionSelected' key={index}>{optionSelec.nome}</div> 
+                            <div className='optionSelected' key={index}>{optionSelec.nome}</div>
                         ))}
                     </div>
                 </div>
@@ -127,7 +143,7 @@ export default function Pesquisa() {
         </section>
         <section className='row' id='porNome'>
             <div className='col-12 col-md-12 col-lg-6 content-Drink'>
-                <img alt='Imagem ilustrativa de um drink'src={drinkimg} />
+                <img alt='Imagem ilustrativa de um drink' src={drinkimg} />
             </div>
             <div className='col-12  col-md-9 col-lg-6 content-porNome'>
                 <h2 style={{ textAlign: 'right' }}>Digite o nome do Drink e aperte no escolhido: </h2>

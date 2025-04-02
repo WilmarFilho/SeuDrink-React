@@ -7,9 +7,9 @@
 }
 
 body {
-    background-color: #080808;
     font-family: "Poppins";
     color: white;
+    background-color: #070707;
 }
 
 header {
@@ -17,7 +17,7 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: #000000bf;
     width: 100%;
     z-index: 5;
 }
@@ -74,6 +74,7 @@ footer * {
 footer {
     padding: 0 150px;
     background-color: #070707;
+    border-radius: 200px 200px 0 0;
 }
 
 footer h4 {
