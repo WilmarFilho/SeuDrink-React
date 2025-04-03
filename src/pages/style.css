@@ -67,6 +67,14 @@
   display: flex;
 }
 
+.listPreparo {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .content-Drink img {
   width: 80%;
   height: fit-content;
@@ -201,8 +209,7 @@
   flex-direction: column;
   background-image: url('./assets/bgCard.webp');
   background-size: cover;
-  border-radius: 70px;
-  gap: 32px;
+  border-radius: 50px;
 }
 
 .swiper {
@@ -211,10 +218,6 @@
   height: auto;
   /* Garante que o conteúdo dentro seja visível */
   padding: 8em 0 !important;
-}
-
-.swiper-wrapper {
-  gap: 92px;
 }
 
 /* Estilizando a scrollbar do Swiper */
@@ -234,7 +237,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: scale(0.8) translateX(-85px) !important;
+  transform: scale(0.8)  !important;
   transition: transform 0.3s ease-in-out;
   opacity: .45;
 
@@ -242,7 +245,7 @@
 
 .swiper-slide-active {
   opacity: 1;
-  transform: scale(1.1)  translateX(-65px) !important;
+  transform: scale(1.1)  !important;
 
 }
 
@@ -257,13 +260,18 @@
 .cardDrink p,
 .cardDrink li {
   font-size: 24px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.355);
+  border-radius: 10px;
+  padding: .4em 0;
   font-family: Comfortaa;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .cardTop {
   width: 100%;
   height: 420px;
-  border-radius: 50px 50px 0 0;
   background-position: center;
   background-size: cover;
   display: flex;
@@ -273,14 +281,14 @@
 }
 
 .divNomeDrink {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0);
   border-radius: 50px 50px 0 0;
   width: 100%;
   height: fit-content;
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 15px 30px;
+  padding: 30px 30px;
 }
 
 
@@ -319,11 +327,36 @@
   width: 100%;
 }
 
+.content-NavHeader button {
+  font-size: 24px;
+  border-radius: 20px;
+  font-family: "Comfortaa";
+  padding: .5em 3em;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
 
+.iconDrink {
+  width: 40px;
+  height: 40px;
+  opacity: .3;
+  background-color: #020202;
+  padding: 10px;
+  border-radius: 100px;
+}
 
 @media (min-width: 1401px) {}
 
 @media (min-width: 1201px) and (max-width: 1400px) {
+
+  .content-NavHeader button {
+    font-size: 20px;
+    padding: .5em 3em;
+    width: 25%;
+  }
+
+
   .swiper-slide {
     transform: scale(0.8) translateX(-15px) !important;
   
@@ -332,11 +365,6 @@
   .swiper-slide-active {
     transform: scale(1.1)  translateX(-10px) !important;
   }
-
-  .swiper-wrapper {
-    gap: 42px;
-  }
-  
 
   #hero {
     background-position-x: 150px;
@@ -372,8 +400,15 @@
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
-
-  
+  .iconDrink {
+    width: 35px;
+    height: 35px;
+  }
+  .content-NavHeader button {
+    font-size: 20px;
+    padding: .5em 3em;
+    width: 25%;
+  }
   
   .NotDrinks p {
     font-size: 28px;
@@ -389,10 +424,6 @@
   
   .swiper-slide-active {
     transform: scale(1.1)  translateX(0) !important;
-  }
-
-  .swiper-wrapper {
-    gap: 32px;
   }
 
   .heroDrinks h2,
@@ -439,7 +470,15 @@
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-
+  .iconDrink {
+    width: 30px;
+    height: 30px;
+  }
+  .content-NavHeader button {
+    font-size: 20px;
+    padding: .5em 3em;
+    width: 25%;
+  }
   .NotDrinks p {
     font-size: 22px;
   }
@@ -453,10 +492,6 @@
   
   .swiper-slide-active {
     transform: scale(1.1)  translateX(0) !important;
-  }
-
-  .swiper-wrapper {
-    gap: 32px;
   }
 
   .heroDrinks h2,
@@ -515,7 +550,15 @@
 }
 
 @media (min-width: 632px) and (max-width: 767.9px) {
-
+  .iconDrink {
+    width: 30px;
+    height: 30px;
+  }
+  .content-NavHeader button {
+    font-size: 20px;
+    padding: .5em 3em;
+    width: 30%;
+  }
   .NotDrinks {
     padding-top: 5em;
     height: 400px;
@@ -537,9 +580,6 @@
     transform: scale(1.1)  translateX(0) !important;
   }
 
-  .swiper-wrapper {
-    gap: 32px;
-  }
 
   .heroDrinks h2,
   .heroDrinks .cardContent h3 {
@@ -598,7 +638,15 @@
 }
 
 @media (min-width: 100px) and (max-width: 631.9px) {
-
+  .iconDrink {
+    width: 30px;
+    height: 30px;
+  }
+  .content-NavHeader button {
+    font-size: 16px;
+    padding: .3em 3em;
+    width: 40%;
+  }
   .NotDrinks {
     padding-left: 3em;
     padding-right: 3em;
@@ -615,7 +663,7 @@
   }
 
   .swiper-slide {
-    transform: scale(0.8) translateX(0) !important;
+    transform: scale(0.8)  translateX(0) !important;
   
   }
   
@@ -623,23 +671,22 @@
     transform: scale(1.1)  translateX(0) !important;
   }
 
-  .swiper-wrapper {
-    gap: 32px;
-  }
-
   .heroDrinks h2,
   .heroDrinks .cardContent h3 {
-    font-size: 28px;
+    font-size: 20px;
   }
 
-  
+  .cardContent {
+    gap: 16px;
+    padding: 16px 16px 64px 16px;
+  }
 
   .heroDrinks {
-    padding: 150px 0;
+    padding: 64px 0;
   }
 
   .heroDrinks .cardContent li {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .cardTop {
@@ -647,7 +694,7 @@
   }
 
   #hero {
-    background-position-x: -260px;
+    background-position-x: -300px;
     padding: 200px var(--padding-global) 100px var(--padding-global);
   }
 
@@ -658,7 +705,7 @@
 
   #hero h2,
   #porNome h2 {
-    font-size: 40px;
+    font-size: 36px;
   }
 
   .campoBusca {
@@ -667,7 +714,7 @@
 
   .option,
   #hero>div h4 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .content-Drink {

@@ -47,7 +47,7 @@ export default function Pesquisa() {
 
 
     function buscaPorNome(option: string | null) {
-        navigate("/resultado", { state: option });
+        navigate("/resultado", { state: {option} });
     };
 
     useEffect(() => {
@@ -146,7 +146,7 @@ export default function Pesquisa() {
                 <img alt='Imagem ilustrativa de um drink' src={drinkimg} />
             </div>
             <div className='col-12  col-md-9 col-lg-6 content-porNome'>
-                <h2 style={{ textAlign: 'right' }}>Digite o nome do Drink e aperte no escolhido: </h2>
+                <h2 style={{ textAlign: 'right' }}>Digite o nome do drink e selecione: </h2>
                 <input type='text' className='campoBusca' placeholder='Digite o nome do drink' value={parametroNomes} onChange={(event) => setParametroNomes(event.target.value)} ></input>
                 <div className='optionsNome'>
                     {optionsNome.slice(0, 2).map(option => (

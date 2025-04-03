@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import drinkIcon from './assets/BxDrink.svg'
 import api from "../services/api";
 import './style.css';
 import React, { useEffect, useRef, useState } from "react";
@@ -54,7 +55,7 @@ export default function Resultados() {
 
 
     const optionsPesquisa = location.state?.optionsSelecteds || [];
-    console.log(optionsPesquisa)
+    const optionsPesquisaNome = location.state?.option || [];
     const [drinksSelecionados, setDrinksSelecionados] = useState<Drink[]>([]);
     const swiperRef = useRef<any>(null);
 
@@ -73,17 +74,40 @@ export default function Resultados() {
     }
 
     useEffect(() => {
-        if (optionsPesquisa.length < 1) return; // Evita erro se não houver opções
 
-        const params: any = { fruta_id: optionsPesquisa[0]?.id };
+        if (optionsPesquisa.length < 1) {
+            const params: any = { nome: optionsPesquisaNome };
 
-        if (optionsPesquisa.length > 1) {
-            params.bebida_id = optionsPesquisa[1]?.id; // Só adiciona se houver uma segunda opção
+            api.get('api/drink/nome', { params })
+                .then((response) => setDrinksSelecionados(response.data))
+                .catch(() => console.log('Erro ao buscar drinks filtrados'));
         }
 
-        api.get('api/drink', { params })
-            .then((response) => setDrinksSelecionados(response.data))
-            .catch(() => console.log('Erro ao buscar drinks filtrados'));
+    }, [optionsPesquisaNome]);
+
+    useEffect(() => {
+        if (optionsPesquisa.length < 1) return; // Evita erro se não houver opções
+        const params =
+        {
+            fruta_id: optionsPesquisa[0]?.id,
+            bebida_id: optionsPesquisa[1]?.id
+        };
+
+        if (optionsPesquisa[1].nome === 'PULAR') {
+            api.get('api/drink', {
+                params: {
+                    fruta_id: optionsPesquisa[0]?.id
+                }
+            })
+                .then((response) => setDrinksSelecionados(response.data))
+                .catch(() => console.log('Erro ao buscar drinks filtrados'));
+        } else {
+            api.get('api/drink', { params })
+                .then((response) => setDrinksSelecionados(response.data))
+                .catch(() => console.log('Erro ao buscar drinks filtrados'));
+        }
+
+
     }, [optionsPesquisa]);
 
     return (
@@ -93,46 +117,37 @@ export default function Resultados() {
                 <Swiper
                     ref={swiperRef}
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    spaceBetween={40}
-                    slidesPerView={1.75}
+                    spaceBetween={0}
+                    slidesPerView={1.5}
                     centeredSlides={true}
+                    observer={true}
+                    observeParents={true}
                     initialSlide={1}
-
                     scrollbar={{ draggable: true }}
-                    breakpoints={{
-                        120: { slidesPerView: 1.5 },
-                        768: { slidesPerView: 1.5 },
-                        1024: { slidesPerView: 2.5 },
-                        1440: { slidesPerView: 2.5 },
-                    }}
+
                     style={{
                         height: "auto",
                     }}
-
                 >
+
                     {drinksSelecionados.map((drink, index) => (
                         <SwiperSlide onClick={() => handleSlideClick(index)} key={drink.id} style={{
                             height: "auto",
                         }}>
                             <div className="cardDrink">
+                                <div className="divNomeDrink">
+                                    <h2>{drink.nome}</h2>
+                                </div>
                                 <div style={{ backgroundImage: `url(${BASE_URL}/${drink.foto})` }} className="cardTop">
-                                    <div className="divNomeDrink">
-                                        <h2>{drink.nome}</h2>
-                                    </div>
+
                                 </div>
                                 <div className="cardContent">
+
                                     <div>
-                                        <h3>Fruta e Bebida Principal:</h3>
-                                        <ul>
-                                            <li>{drink.frutas?.nome}</li>
-                                            <li>{drink.bebidas?.nome}</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h3>Modo de Preparo:</h3>
-                                        <ul>
+                                        
+                                        <ul className="listPreparo">
                                             {drink.preparo.split(';').map((etapa, index) => (
-                                                etapa.trim() && <li key={index}>{etapa.trim()}</li>
+                                                etapa.trim() && <li key={index}> <div className="iconDrink" ><img src={drinkIcon}></img> </div>{etapa.trim()}</li>
                                             ))}
                                         </ul>
                                     </div>
