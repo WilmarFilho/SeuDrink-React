@@ -44,6 +44,7 @@ export default function Resultados() {
 
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const header = document.querySelector('header');
         if (header) {
             if (location.pathname === '/resultado') {
