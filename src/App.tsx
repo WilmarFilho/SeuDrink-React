@@ -22,6 +22,8 @@ export default function App() {
 
         </Route>
 
+        <Route path="*" element={<Navigate to="/pesquisa" replace />} />
+
       </Routes>
 
     </Router>
